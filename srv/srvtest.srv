@@ -1,4 +1,6 @@
 string in
+bool[] A
+float32[] A_value
 float32 num
 ---
 string out
