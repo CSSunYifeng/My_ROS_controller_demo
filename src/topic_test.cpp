@@ -26,9 +26,9 @@ int main(int argc, char **argv)
     msg.x = 0.1;
     msg.y = 0.1;
     //ros::Publisher chatter_pub = n.advertise<topic_test::topictest1>("topictest1",1000);
-    ros::Publisher arm_trajectory = n.advertise<trajectory_msgs::JointTrajectory>("ttttt",1000); // /kuka_kr5_arc/kr5_controller/command
+    ros::Publisher arm_trajectory = n.advertise<trajectory_msgs::JointTrajectory>("/kuka_kr5_arc/kr5_controller/command",1000); // /kuka_kr5_arc/kr5_controller/command
     ros::ServiceServer service = n.advertiseService("servicetest1",hander_function);
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(100);
     float mine;
     std::string arm_joints[6] = {"joint_a1","joint_a2","joint_a3","joint_a4","joint_a5","joint_a6"};
     double Home_Point[6] = {0,-1.57,1.57,0,1.57,0};
@@ -54,7 +54,7 @@ int main(int argc, char **argv)
     { 
         for(int i = 0;i<6;i++)
         {
-            if(flag[i]&&(c[i]<1.57&&c[i]>-1.57))      //flag[i]&&(c[i]<1.57&&c[i]>-1.57)
+            if(flag[i])//&&(c[i]<1.57&&c[i]>-1.57))      //flag[i]&&(c[i]<1.57&&c[i]>-1.57)
             {
                 tra_msg.points[0].positions[i] = c[i];
             }

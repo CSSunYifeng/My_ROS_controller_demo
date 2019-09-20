@@ -7,12 +7,7 @@ project(topic_test)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  roscpp
-  std_msgs
-)
-
+find_package(catkin REQUIRED COMPONENTS message_generation roscpp std_msgs)
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -210,5 +205,5 @@ add_executable(service_client_test
 )
 add_dependencies(service_client_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(service_client_test
-  ${catkin_LIBRARIES}
+  ${catkin_LIBRARIES} libtinyxml2.so
 )
