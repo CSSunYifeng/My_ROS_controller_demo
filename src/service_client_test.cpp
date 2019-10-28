@@ -39,7 +39,7 @@ int main(int argc, char **argv)
     srv.request.num = 2;
     srv.request.A.resize(6);
     srv.request.A_value.resize(6);
-    ros::Rate loop_rate(10);  //Hz
+    ros::Rate loop_rate(5);  //Hz
 
     XMLDocument doc;
     doc.LoadFile("fool.xml");
@@ -48,10 +48,17 @@ int main(int argc, char **argv)
     {
         load_xml_node(doc, mm, Point);
     }
+
     printf("save ok!!!!!\n");
+    
     cout << Point[0][0]<<endl;
+
+    //cout << ros::ok();
     while(ros::ok())
     {
+        cout << "rosok: "<<ros::ok()<<endl;
+        cout << "rosok: "<<ros::ok()<<endl;
+        cout << "Continue?";
         if(client.call(srv))
         {
             cout << "Continue?";
@@ -96,6 +103,8 @@ int main(int argc, char **argv)
         }
         ros::spinOnce();
         loop_rate.sleep();
+        if(cunt == 121)
+            break;
     }
     return 0;
 }
@@ -124,7 +133,8 @@ void load_xml_node(XMLDocument &doc,unsigned int &i, vector<vector<double> >  &P
 
 
 
-	
+
+
 	titleElement = doc.FirstChildElement("ROBOT")->FirstChildElement(value_m.c_str())->FirstChildElement("A1");
 	title = titleElement->GetText();
 	pval << title;
@@ -234,6 +244,10 @@ void server_type_2(topic_test::srvtest &srv,vector<vector<double> > &Point,unsig
         //cout << Point[cunt - 1][5] << endl;
         //cout << cunt << endl;
         cunt++;
+    }
+    else
+    {
+        cout<<"error";
     }
     if(cunt == 122)
     {
